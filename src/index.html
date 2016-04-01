@@ -2,9 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    
+    <title>Artezio</title>
 </head>
 <body>
+
+<script >
+    var app = angular.module("firstPart", []);
+    app.controller("firstPartCtrl", function($scope) {
+
+        elem1 = {type:1, name:"Поле ввода для числа в экспоненциальной записи", isMask:true, isParts:false};
+        elem2 = {type:2, name:"Поле ввода чисел", isMask:true, isParts:false};
+        elem3 = {type:3, name:"Телефонный номер", isMask:true, isParts:false};
+        elem4 = {type:4, name:"Почтовый адрес", isMask:true, isParts:true};
+
+        $scope.typeControls = [elem1, elem2, elem3, elem4];
+
+        $scope.controls = [];
+
+        $scope.addControl = function(x) {
+            $scope.controls.push(x);
+        }
+
+        $scope.removeControl = function(x) {
+            $scope.controls.splice(x, 1);
+        }
+
+    });
+
+</script>
+
+    <div ng-app="firstPart" ng-controller="firstPartCtrl">
+
+        <label>Тип : </label>
+        <select>
+            <option ng-repeat="x in typeControls">{{x.name}}</option>
+        </select>
+
+        <label>Маска : </label>
+        <input ng-model="mask" placeholder="Маска">
+
+        <label>Кол-во частей : </label>
+        <input ng-model="numberParts" placeholder="Кол-во частей">
+
+        <button ng-click="addControl($x.type)">Добавить</button>
+
+        <br><br><br><br><br>
+
+        <div  ng-repeat="x in controls">
+
+            <lable>{{x.name}} : </lable>
+
+            <input ng-model="value">
+
+            <button ng-click="">OK</button>
+
+            <lable></lable>
+
+            <button ng-click="removeControl($index)">X</button>
+
+            <br><br>
+        </div>
+    </div>
+
 
 </body>
 </html>

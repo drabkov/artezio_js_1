@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div>
+
+        <label>Тип : </label>
+        <select id = "typeControls" onchange="changetypeControl()"></select>
+
+        <label>Маска : </label>
+        <input id="mask" placeholder="Маска">
+
+        <label>Кол-во частей : </label>
+        <input id="numberParts" placeholder="Кол-во частей">
+
+        <button onclick="addControl()">Добавить</button>
+
+    </div>
+
+    <br>
+
+    <div id="controls">
+
+    </div>
+
+    <script>
+
+        var elem1 = {type:1, name:"Поле ввода для числа в экспоненциальной записи", isMask:true, isParts:false};
+        var elem2 = {type:2, name:"Поле ввода чисел", isMask:true, isParts:false};
+        var elem3 = {type:3, name:"Телефонный номер", isMask:true, isParts:false};
+        var elem4 = {type:4, name:"Почтовый адрес", isMask:true, isParts:true};
+
+        var tControls = [elem1, elem2, elem3, elem4];
+
+        text = "";
+        for	(index = 0; index < tControls.length; index++) {
+            text = text + "<option>" + tControls[index].name + "</option>";
+        }
+
+        document.getElementById("typeControls").innerHTML = text;
+
+        var controls = [];
+
+
+        function addControl() {
+
+            controls.push(document.getElementById("typeControls").text);
+
+            for	(index = 0; index < controls.length; index++) {
+                text = text + "<li>" + controls[index] + "</li>";
+            }
+
+            
+            document.getElementById("controls").innerHTML = "<ul>" + text + "</ul>";
+        }
+    </script>
+</body>
+</html>
